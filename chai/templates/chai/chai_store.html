@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ Chai Stores Page
+{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-center my-6">Find Chai Stores</h1>
+
+<!-- Yahan form render karna zaroori hai -->
+<form method="POST" class="m-6">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded mt-2">
+        Submit
+    </button>
+</form>
+
+{% if stores %}
+    <h2 class="text-2xl font-bold m-6">Stores:</h2>
+    <ul class="m-6">
+        {% for store in stores %}
+            <li class="text-white">{{ store.name }} - {{ store.location }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
